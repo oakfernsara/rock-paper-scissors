@@ -28,9 +28,11 @@ function computerChoice() {
 
     //return win statement if true, lose statement if false, tie statement if tie
     if (playerWins === true) {
-        return `You win! ${playerSelection} beats ${computerSelection}`
+        playerSelection = playerSelection.replace(/^[a-z]/, x => x.toUpperCase())
+        return `You win! ${playerSelection} beats ${computerSelection}.`
     } else if (playerWins === false) {
-        return `You lose! ${computerSelection} beats ${playerSelection}`
+        computerSelection = computerSelection.replace(/^[a-z]/, x => x.toUpperCase())
+        return `You lose! ${computerSelection} beats ${playerSelection}.`
     } else {
         return `It's a tie!`
     }
