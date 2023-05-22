@@ -36,3 +36,7 @@ function computerChoice() {
     }
     
     }
+
+const playerSelection = "rock";
+const computerSelection = computerChoice();
+console.log(rpsRound(playerSelection, computerSelection));
