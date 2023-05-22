@@ -9,9 +9,30 @@ function computerChoice() {
 }
 
 //rpsRound - playerSelection and computerSelection
-    //get playerSelection via prompt
+    function rpsRound(computerSelection, playerSelection) {
     //create playerWins variable set to false
+    let playerWins = false;
+    computerSelection = computerSelection.toLowerCase();
+    playerSelection = playerSelection.toLowerCase();
     //IF both selections match, declare a tie
-    //ELSE IF playerSelection is rock && computerSelection is paper, playerWins = true
-    //ELSE IF playerSelection is paper && computerSelection is rock, playerWins = true
-    //ELSE IF playerSelection is scissors && computerSelection is paper, playerWins = true
+    if (computerSelection === playerSelection) {
+        playerWins = "tie";
+    }
+    //ELSE IF winning conditions, playerWins = true
+    else if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')) {
+       playerWins = true;
+    }
+
+    //return win statement if true, lose statement if false, tie statement if tie
+    if (playerWins === true) {
+        return `You win! ${playerSelection} beats ${computerSelection}`
+    } else if (playerWins === false) {
+        return `You lose! ${computerSelection} beats ${playerSelection}`
+    } else {
+        return `It's a tie!`
+    }
+    
+    }
