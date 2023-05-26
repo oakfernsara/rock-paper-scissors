@@ -67,22 +67,31 @@ function computerChoice() {
 const rockButton = document.createElement('button');
 const paperButton = document.createElement('button');
 const scissorsButton = document.createElement('button');
+const div = document.createElement('div');
 
-rockButton.value = "Rock";
-paperButton.value = "Paper";
-scissorsButton.value = "Scissors";
+rockButton.textContent = "Rock";
+paperButton.textContent = "Paper";
+scissorsButton.textContent = "Scissors";
+
+document.body.appendChild(div);
 
 //add event listeners for each button to return user input
 rockButton.addEventListener('click', e => {
-    rpsRound(computerChoice(), 'rock')
+    div.innerText = rpsRound(computerChoice(), 'rock')
 });
 
 paperButton.addEventListener('click', e => {
-    rpsRound(computerChoice(), 'paper')
+    div.innerText = rpsRound(computerChoice(), 'paper')
 });
 
-scissorsButton.addEventListener('click', () => rpsRound(computerChoice(), 'scissors'));
+scissorsButton.addEventListener('click', () => {
+    div.innerText = rpsRound(computerChoice(), 'scissors')
+});
 
-document.querySelectorAll('button').forEach(button => {
-    document.body.appendChild(button)
-})
+document.body.appendChild(rockButton);
+document.body.appendChild(paperButton);
+document.body.appendChild(scissorsButton);
+
+
+
+
