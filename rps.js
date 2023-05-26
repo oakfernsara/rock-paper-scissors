@@ -76,21 +76,28 @@ scissorsButton.textContent = "Scissors";
 document.body.appendChild(div);
 
 //add event listeners for each button to return user input
-rockButton.addEventListener('click', e => {
-    div.innerText = rpsRound(computerChoice(), 'rock')
-});
+// rockButton.addEventListener('click', e => {
+//     div.innerText = rpsRound(computerChoice(), 'rock')
+// });
 
-paperButton.addEventListener('click', e => {
-    div.innerText = rpsRound(computerChoice(), 'paper')
-});
+// paperButton.addEventListener('click', e => {
+//     div.innerText = rpsRound(computerChoice(), 'paper')
+// });
 
-scissorsButton.addEventListener('click', () => {
-    div.innerText = rpsRound(computerChoice(), 'scissors')
-});
+// scissorsButton.addEventListener('click', () => {
+//     div.innerText = rpsRound(computerChoice(), 'scissors')
+// });
 
 document.body.appendChild(rockButton);
 document.body.appendChild(paperButton);
 document.body.appendChild(scissorsButton);
+
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', e => {
+        div.innerText = rpsRound(computerChoice(), e.target.textContent)
+    })
+    
+})
 
 
 
