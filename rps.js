@@ -8,6 +8,11 @@ function computerChoice() {
     return rpsArray[number]
 }
 
+//set variables for wins, losses, ties
+let wins = 0;
+let losses = 0;
+let ties = 0;
+
 //rpsRound - playerSelection and computerSelection
     function rpsRound(computerSelection, playerSelection) {
     //create playerWins variable set to false
@@ -29,11 +34,14 @@ function computerChoice() {
     //return win statement if true, lose statement if false, tie statement if tie
     if (playerWins === true) {
         playerSelection = playerSelection.replace(/^[a-z]/, x => x.toUpperCase())
+        wins++
         return `You win! ${playerSelection} beats ${computerSelection}.`
     } else if (playerWins === false) {
+        losses++
         computerSelection = computerSelection.replace(/^[a-z]/, x => x.toUpperCase())
         return `You lose! ${computerSelection} beats ${playerSelection}.`
     } else {
+        ties++
         return `It's a tie!`
     }
     
@@ -63,6 +71,8 @@ function computerChoice() {
     // }
 
 
+
+
 //create three labeled buttons
 const rockButton = document.createElement('button');
 const paperButton = document.createElement('button');
@@ -73,30 +83,37 @@ rockButton.textContent = "Rock";
 paperButton.textContent = "Paper";
 scissorsButton.textContent = "Scissors";
 
-document.body.appendChild(div);
-
-//add event listeners for each button to return user input
-// rockButton.addEventListener('click', e => {
-//     div.innerText = rpsRound(computerChoice(), 'rock')
-// });
-
-// paperButton.addEventListener('click', e => {
-//     div.innerText = rpsRound(computerChoice(), 'paper')
-// });
-
-// scissorsButton.addEventListener('click', () => {
-//     div.innerText = rpsRound(computerChoice(), 'scissors')
-// });
-
 document.body.appendChild(rockButton);
 document.body.appendChild(paperButton);
 document.body.appendChild(scissorsButton);
 
+document.body.appendChild(div);
+
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', e => {
-        div.innerText = rpsRound(computerChoice(), e.target.textContent)
+        console.log('wins', wins, 'losses', losses)
+        let resultText = "";
+        let gameText = rpsRound(computerChoice(), e.target.textContent)
+        if (wins > 4) {
+            resultText = "You won five times!"
+            wins = 0;
+            losses = 0;
+            ties = 0;
+        } else if (losses > 4) {
+            resultText = "You lost five times!"
+            wins = 0;
+            losses = 0;
+            ties = 0;
+        }
+
+        div.innerText = `
+            ${gameText}
+            Wins: ${wins}, Losses: ${losses}, Ties: ${ties}
+            ${resultText}
+        `
+
+        
     })
-    
 })
 
 
