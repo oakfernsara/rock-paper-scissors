@@ -39,28 +39,50 @@ function computerChoice() {
     
     }
 
-    function game() {
-        let wins = 0;
-        let losses = 0;
-        let ties = 0;
-        //play the game five times
-        for (let x = 0; x < 5; x++) {
-            const playerSelection = prompt('Choose rock, paper, scissor');
-            const computerSelection = computerChoice();
-            let result = rpsRound(computerSelection, playerSelection)
-            console.log(result)
-            if (result.includes('win')) {
-                wins++;
-            } else if (result.includes('lose')) {
-                losses++;
-            } else {
-                ties++;
-            }
-            // and keep track of wins and losses
-        }
+    // function game() {
+    //     let wins = 0;
+    //     let losses = 0;
+    //     let ties = 0;
+    //     //play the game five times
+    //     for (let x = 0; x < 5; x++) {
+    //         const playerSelection = prompt('Choose rock, paper, scissor');
+    //         const computerSelection = computerChoice();
+    //         let result = rpsRound(computerSelection, playerSelection)
+    //         console.log(result)
+    //         if (result.includes('win')) {
+    //             wins++;
+    //         } else if (result.includes('lose')) {
+    //             losses++;
+    //         } else {
+    //             ties++;
+    //         }
+    //         // and keep track of wins and losses
+    //     }
 
-        console.log('wins', wins, 'losses', losses, 'ties', ties)
-    }
+    //     console.log('wins', wins, 'losses', losses, 'ties', ties)
+    // }
 
 
-console.log(game());
+//create three labeled buttons
+const rockButton = document.createElement('button');
+const paperButton = document.createElement('button');
+const scissorsButton = document.createElement('button');
+
+rockButton.value = "Rock";
+paperButton.value = "Paper";
+scissorsButton.value = "Scissors";
+
+//add event listeners for each button to return user input
+rockButton.addEventListener('click', e => {
+    rpsRound(computerChoice(), 'rock')
+});
+
+paperButton.addEventListener('click', e => {
+    rpsRound(computerChoice(), 'paper')
+});
+
+scissorsButton.addEventListener('click', () => rpsRound(computerChoice(), 'scissors'));
+
+document.querySelectorAll('button').forEach(button => {
+    document.body.appendChild(button)
+})
